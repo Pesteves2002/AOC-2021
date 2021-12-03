@@ -80,13 +80,16 @@ int main()
             {
                 if (all_numbers[j].get_valid())
                 {
-                    for (int m = LENGTH - i - 1; m < LENGTH; m++)
+                    for (int m = LENGTH - i; m < LENGTH; m++)
                     {
                         current_counter[m] += all_numbers[j].get_value_index(m);
                     }
                     current_numbers++;
                 }
             }
+
+            if (current_numbers == 1)
+                break;
 
             // maiority sao 1
             if (counter[LENGTH - i] > NUM_CHAR / 2)
@@ -98,8 +101,10 @@ int main()
             {
                 epsilon += pow(2, i - 1);
             }
-            // maioria é 1
-            if (current_counter[LENGTH - i] >= current_numbers / 2)
+
+            int zero = current_numbers - current_counter[LENGTH - i];
+            // se for 1 maior
+            if (current_counter[LENGTH - i] >= zero)
             {
                 for (int j = 0; j < NUM_CHAR; j++)
                 {
@@ -131,7 +136,6 @@ int main()
     {
         if (all_numbers[i].get_valid())
         {
-            int a = 3;
             std::cout << all_numbers[i].to_string() << std::endl;
         }
         all_numbers[i].set_valid_true();
@@ -145,7 +149,7 @@ int main()
         {
             if (all_numbers[j].get_valid())
             {
-                for (int m = LENGTH - i - 1; m < LENGTH; m++)
+                for (int m = LENGTH - i; m < LENGTH; m++)
                 {
                     current_counter[m] += all_numbers[j].get_value_index(m);
                 }
@@ -155,8 +159,10 @@ int main()
 
         if (current_numbers == 1)
             break;
+
+        int zero = current_numbers - current_counter[LENGTH - i];
         // se for 1 maior
-        if (current_counter[LENGTH - i] > current_numbers / 2)
+        if (current_counter[LENGTH - i] > zero)
         {
 
             for (int j = 0; j < NUM_CHAR; j++)
@@ -169,6 +175,7 @@ int main()
             }
             std::cout << 0;
         }
+
         // se for 0 menor
         else
         {
@@ -189,7 +196,6 @@ int main()
     {
         if (all_numbers[i].get_valid())
         {
-            int a = 3;
             std::cout << all_numbers[i].to_string() << std::endl;
         }
         all_numbers[i].set_valid_true();
